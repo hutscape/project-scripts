@@ -18,7 +18,7 @@ install:
 	echo "Making pre-commit hook executable"
 	chmod u+x .git/hooks/pre-commit
 	echo "Adding .gitignore..."
-	cat scripts/gitignore >> .gitignore
+	cat scripts/gitignore > .gitignore
 
 bom:
 	rm -f $(BOM_PATH)
