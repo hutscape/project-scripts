@@ -31,6 +31,10 @@ out.writerow([
     'Description'
 ])
 
+grand_total_cost = 0.0
+total_items = 0
+uniq_items = 0
+
 def total_cost(unit_cost, quantity):
     if not unit_cost:
         return 0
@@ -62,3 +66,6 @@ for group in grouped:
         c.getField("Minimum Order"),
         c.getPartName() + ": " + c.getDescription()
     ])
+
+# with open('bom/data.json', 'w') as outfile:
+#     json.dump(data, outfile, indent=2)
