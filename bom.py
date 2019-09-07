@@ -67,5 +67,5 @@ for group in grouped:
         c.getPartName() + ": " + c.getDescription()
     ])
 
-# with open('bom/data.json', 'w') as outfile:
-#     json.dump(data, outfile, indent=2)
+with open('_data/bom.json', 'w') as outfile:
+    json.dump(data, outfile, indent=2)
