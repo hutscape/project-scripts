@@ -1,6 +1,7 @@
 import kicad_netlist_reader
 import csv
 import sys
+import json
 
 net = kicad_netlist_reader.netlist(sys.argv[1])
 
