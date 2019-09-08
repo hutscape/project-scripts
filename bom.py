@@ -14,6 +14,17 @@ except IOError:
 
 out = csv.writer(f, lineterminator='\n', delimiter=',', quotechar='\"', quoting=csv.QUOTE_ALL)
 
+grand_total_cost = 0.0
+total_items = 0
+uniq_items = 0
+
+def total_cost(unit_cost, quantity):
+    if not unit_cost:
+        return 0
+
+    return float(unit_cost) * int(quantity)
+
+# Write CSV
 out.writerow([
     'Designator',
     'Value',
@@ -31,16 +42,6 @@ out.writerow([
     'MOQ',
     'Description'
 ])
-
-grand_total_cost = 0.0
-total_items = 0
-uniq_items = 0
-
-def total_cost(unit_cost, quantity):
-    if not unit_cost:
-        return 0
-
-    return float(unit_cost) * int(quantity)
 
 grouped = net.groupComponents()
 for group in grouped:
@@ -67,6 +68,15 @@ for group in grouped:
         c.getField("Minimum Order"),
         c.getPartName() + ": " + c.getDescription()
     ])
+
+# Write BOM analytics
+data = {}
+data['bom'] = []
+data['bom'].append({
+    'total': grand_total_cost,
+    'uniq_items': uniq_items,
+    'total_items': total_items
+})
 
 with open('_data/bom.json', 'w') as outfile:
     json.dump(data, outfile, indent=2)
