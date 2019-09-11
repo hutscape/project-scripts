@@ -12,7 +12,6 @@ build:
 bom:
 	rm -f $(BOM_PATH)
 	python scripts/bom.py $(XML_PATH) $(BOM_PATH)
-	node scripts/bom_info.js
 
 install:
 	echo "Installing git-secrets from awslabs..."
