@@ -34,6 +34,12 @@ def get_uniq_vendor_names(vendors):
 
     return uniq_vendors
 
+def get_datasheet(datasheet):
+    if datasheet == "~":
+        return None
+
+    return datasheet
+
 # Write CSV
 out.writerow([
     'Designator',
@@ -75,7 +81,7 @@ for group in grouped:
         c.getField("Stock"),
         c.getField("Manufacturer"),
         c.getField("Part No."),
-        c.getDatasheet(),
+        get_datasheet(c.getDatasheet()),
         c.getField("Vendor"),
         c.getField("Vendor link"),
         c.getField("Unit cost"),
