@@ -16,7 +16,9 @@ out = csv.writer(f, lineterminator='\n', delimiter=',', quotechar='\"', quoting=
 
 grand_total_cost = 0.0
 total_items = 0
+total_items_populate = 0
 uniq_items = 0
+uniq_items_populate = 0
 vendor_names = []
 
 def total_cost(unit_cost, quantity):
@@ -56,7 +58,8 @@ out.writerow([
     'Unit',
     'Total',
     'MOQ',
-    'Description'
+    'Description',
+    'DNP'
 ])
 
 grouped = net.groupComponents()
@@ -71,6 +74,10 @@ for group in grouped:
     total_items += len(group)
     grand_total_cost += total_cost(c.getField("Unit cost"), len(group))
     vendor_names.append(c.getField("Vendor"))
+
+    if not c.getField("DNP"):
+        total_items_populate += len(group)
+        uniq_items_populate += 1
 
     out.writerow([
         refs,
@@ -87,13 +94,16 @@ for group in grouped:
         c.getField("Unit cost"),
         total_cost(c.getField("Unit cost"), len(group)),
         c.getField("Minimum Order"),
-        c.getPartName() + ": " + c.getDescription()
+        c.getPartName() + ": " + c.getDescription(),
+        c.getField("DNP"),
     ])
 
 # Calculate BOM analytics
 data = {}
 data['bom-uniq'] = uniq_items
+data['bom-uniq-populate'] = uniq_items_populate
 data['bom-total'] = total_items
+data['bom-total-populate'] = total_items_populate
 data['bom-cost'] = grand_total_cost
 data['vendors'] = len(get_uniq_vendor_names(vendor_names))
 data['vendor-names'] = get_uniq_vendor_names(vendor_names)
