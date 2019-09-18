@@ -27,12 +27,20 @@ def total_cost(unit_cost, quantity):
 
     return float("{0:.2f}".format(float(unit_cost) * int(quantity)))
 
+def is_valid_vendor_name(vendor_name):
+    if "stock" not in vendor_name.lower():
+        if "dnp" not in vendor_name.lower():
+            return True
+
+    return False
+
 def get_uniq_vendor_names(vendors):
     uniq_vendors = []
 
-    for x in vendors:
-        if x not in uniq_vendors and x:
-            uniq_vendors.append(x)
+    for each_vendor in vendors:
+        if is_valid_vendor_name(each_vendor):
+            if each_vendor not in uniq_vendors and each_vendor:
+                uniq_vendors.append(each_vendor)
 
     return uniq_vendors
 
