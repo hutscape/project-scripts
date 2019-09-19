@@ -73,10 +73,14 @@ out.writerow([
 grouped = net.groupComponents()
 for group in grouped:
     refs = ""
+    dnp = ""
 
     for component in group:
         refs += component.getRef() + ", "
         c = component
+
+        if c.getField("DNP") == "Yes":
+            dnp += c.getRef() + ", "
 
     uniq_items += 1
     total_items += len(group)
@@ -103,7 +107,7 @@ for group in grouped:
         total_cost(c.getField("Unit cost"), len(group)),
         c.getField("Minimum Order"),
         c.getPartName() + ": " + c.getDescription(),
-        c.getField("DNP"),
+        dnp,
     ])
 
 # Calculate BOM analytics
