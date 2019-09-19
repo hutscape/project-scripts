@@ -18,7 +18,6 @@ grand_total_cost = 0.0
 total_items = 0
 total_items_populate = 0
 uniq_items = 0
-uniq_items_populate = 0
 vendor_names = []
 
 def total_cost(unit_cost, quantity):
@@ -89,7 +88,6 @@ for group in grouped:
 
     if not c.getField("DNP"):
         total_items_populate += len(group)
-        uniq_items_populate += 1
 
     out.writerow([
         refs,
@@ -113,7 +111,6 @@ for group in grouped:
 # Calculate BOM analytics
 data = {}
 data['bom-uniq'] = uniq_items
-data['bom-uniq-populate'] = uniq_items_populate
 data['bom-total'] = total_items
 data['bom-total-populate'] = total_items_populate
 data['bom-cost'] = grand_total_cost
