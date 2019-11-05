@@ -34,3 +34,6 @@ install:
 
   echo "Adding Contributing MD..."
 	cat scripts/_contributing.md > contributing.md
+
+	echo "Adding License MD..."
+	cat scripts/_LICENSE.md > LICENSE.md
