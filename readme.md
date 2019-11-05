@@ -4,4 +4,5 @@
 
 ## Install
 
-Run `make install`
+1. Copy `_Makefile` to root as `Makefile`
+1. Run `make install`
