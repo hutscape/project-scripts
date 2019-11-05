@@ -32,5 +32,5 @@ install:
 	echo "Adding .gitmodules..."
 	cat scripts/_gitmodules > .gitmodules
 
-  echo "Adding Makefile..."
-	cat scripts/_Makefile > .gitignore
+  echo "Adding Contributing MD..."
+	cat scripts/_contributing.md > contributing.md
