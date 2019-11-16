@@ -95,7 +95,7 @@ for group in grouped:
         len(group),
         c.getField("Package"),
         c.getField("Category"),
-        c.getField("Stock"),
+        c.getField("Stock No."),
         c.getField("Manufacturer"),
         c.getField("Part No."),
         get_datasheet(c.getDatasheet()),
