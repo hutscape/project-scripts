@@ -1,3 +1,5 @@
+# run from parent folder:
+# $ python scripts/bom.py hardware/*.xml _data/bill_of_materials.csv
 import kicad_netlist_reader
 import csv
 import sys
@@ -51,22 +53,22 @@ def get_datasheet(datasheet):
 
 # Write CSV
 out.writerow([
-    'Designator',
-    'Value',
-    'Q',
-    'Package',
-    'Category',
-    'Stock',
-    'Manufacturer',
-    'MPN',
-    'Datasheet',
-    'Vendor',
-    'Link',
-    'Unit',
-    'Total',
-    'MOQ',
-    'Description',
-    'DNP'
+    'Designator', # E.g. U1, R1
+    'Value', # E.g. 10k, 0.1uF
+    'Q', # Quantity of each part
+    'Package', # E.g. SMD, 0805, SOT-23-5
+    'Category', # E.g. Electronics, Connector, Mechanical, PCB
+    'Stock', # Internal stock location
+    'Manufacturer', # E.g. Vishay, Muticomp
+    'MPN', # Manufacturer part number
+    'Datasheet', # URL for Datasheet
+    'Vendor', # Name of vendor E.g. Element14, Digikey, RS Components, Mouser
+    'Link', # Vendor link to the exact part
+    'Unit', # Unit price
+    'Total', # Total price
+    'MOQ', # Minimum Order Quantity
+    'Description', # Auto-populated by KiCad
+    'DNP' # Do not populate comma, seperate designators
 ])
 
 grouped = net.groupComponents()
@@ -83,7 +85,7 @@ for group in grouped:
 
     uniq_items += 1
     total_items += len(group)
-    grand_total_cost += total_cost(c.getField("Unit cost"), len(group))
+    grand_total_cost += total_cost(c.getField("Unit"), len(group))
     vendor_names.append(c.getField("Vendor"))
 
     if not c.getField("DNP"):
@@ -95,15 +97,15 @@ for group in grouped:
         len(group),
         c.getField("Package"),
         c.getField("Category"),
-        c.getField("Stock No."),
+        c.getField("Stock"),
         c.getField("Manufacturer"),
-        c.getField("Part No."),
+        c.getField("MPN"),
         get_datasheet(c.getDatasheet()),
         c.getField("Vendor"),
-        c.getField("Vendor link"),
-        c.getField("Unit cost"),
-        total_cost(c.getField("Unit cost"), len(group)),
-        c.getField("Minimum Order"),
+        c.getField("Link"),
+        c.getField("Unit"),
+        total_cost(c.getField("Unit"), len(group)),
+        c.getField("MOQ"),
         c.getPartName() + ": " + c.getDescription(),
         dnp,
     ])
