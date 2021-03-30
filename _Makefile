@@ -3,8 +3,10 @@ XML_PATH?=hardware/*.xml
 
 .PHONY: serve build install bom
 
-serve: build
-	jekyll serve
+default: serve
+
+serve:
+	bundle exec jekyll serve
 
 build:
 	jekyll build
@@ -37,3 +39,6 @@ install:
 
 	echo "Adding License MD..."
 	cat scripts/_LICENSE.md > LICENSE.md
+
+	echo "Installing git submodules..."
+	git submodule update --init
