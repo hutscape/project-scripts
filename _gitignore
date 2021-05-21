@@ -1,15 +1,17 @@
 # Temporary
+.DS_Store
+_autosave*
+.vscode
 *.kicad_pcb-bak
 *.sch-bak
 *.bak
-_autosave*
 *-cache.lib
 *-rescue.lib
 *-rescue.dcm
 *.elf
-*.bin
 *.hex
 *.pyc
+*.gch
 
 # jekyll
 _site

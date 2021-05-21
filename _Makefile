@@ -1,7 +1,7 @@
 BOM_PATH?=_data/bill_of_materials.csv
 XML_PATH?=hardware/*.xml
 
-.PHONY: serve build install bom
+.PHONY: default serve build install bom
 
 default: serve
 
@@ -15,6 +15,9 @@ bom:
 	rm -f $(BOM_PATH)
 	python scripts/bom.py $(XML_PATH) $(BOM_PATH)
 
+stats:
+	python3 scripts/bom_stats.py $(BOM_PATH)
+
 install:
 	echo "Installing git-secrets from awslabs..."
 	brew install git-secrets
@@ -22,23 +25,14 @@ install:
 	echo "Adding git-secrets config..."
 	cat scripts/_git-secrets >> .git/config
 
-  echo "Installing pre-commit hook"
+	echo "Installing git hook"
 	touch .git/hooks/pre-commit || exit
 
-  echo "Making pre-commit hook executable"
+	echo "Making pre-commit hook executable"
 	chmod u+x .git/hooks/pre-commit
 
-  echo "Adding .gitignore..."
+	echo "Adding .gitignore..."
 	cat scripts/_gitignore > .gitignore
 
-	echo "Adding .gitmodules..."
-	cat scripts/_gitmodules > .gitmodules
-
-  echo "Adding Contributing MD..."
-	cat scripts/_contributing.md > contributing.md
-
-	echo "Adding License MD..."
-	cat scripts/_LICENSE.md > LICENSE.md
-
-	echo "Installing git submodules..."
-	git submodule update --init
+	echo "Adding Makefile..."
+	cat scripts/_Makefile > .gitignore
