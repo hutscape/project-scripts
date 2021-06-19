@@ -69,7 +69,6 @@ for group in grouped:
         c.getField("Vendor"),
         c.getField("Link"),
         c.getField("Unit"),
-        total_cost(c.getField("Unit"), len(group)),
         c.getField("MOQ"),
         c.getPartName() + ": " + c.getDescription(),
         dnp,
