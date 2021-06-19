@@ -28,7 +28,7 @@ def get_datasheet(datasheet):
 out.writerow([
     'Designator',  # E.g. U1, R1
     'Value',  # E.g. 10k, 0.1uF
-    'Q',  # Quantity of each part
+    'Qty',  # Quantity of each part
     'Package',  # E.g. SMD, 0805, SOT-23-5
     'Category',  # E.g. Electronics, Connector, Mechanical, PCB
     'Stock',  # Internal stock location
