@@ -24,6 +24,13 @@ def get_datasheet(datasheet):
     return datasheet
 
 
+def total_cost(unit_cost, quantity):
+    if not unit_cost:
+        return 0
+
+    return float("{0:.2f}".format(float(unit_cost) * int(quantity)))
+
+
 # Write CSV
 out.writerow([
     'Designator',  # E.g. U1, R1
@@ -38,7 +45,7 @@ out.writerow([
     'Vendor',  # Name of vendor E.g. Element14, Digikey, RS Components, Mouser
     'Link',  # Vendor link to the exact part
     'Unit',  # Unit price
-    'Total',  # Total price
+    'Total',  # Total price = Unit price * Quantity
     'MOQ',  # Minimum Order Quantity
     'Description',  # Auto-populated by KiCad
     'DNP'  # Do not populate comma, seperate designators
