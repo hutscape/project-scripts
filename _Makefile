@@ -36,3 +36,7 @@ install:
 
 	echo "Adding Makefile..."
 	cat scripts/_Makefile > .gitignore
+
+	echo "Adding Gemfile and installing ruby gems..."
+	cat scripts/_Makefile > Gemfile
+	sudo bundle install
