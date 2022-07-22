@@ -1,5 +1,5 @@
 # run from parent folder:
-# $ python scripts/bom.py hardware/*.xml _data/bill_of_materials.csv
+# $ python scripts/bom.py pcb/*.xml _data/bill_of_materials.csv
 import kicad_netlist_reader
 import csv
 import sys
