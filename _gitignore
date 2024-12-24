@@ -4,6 +4,7 @@ _autosave*
 .vscode
 *.kicad_pcb-bak
 *.sch-bak
+*.lck
 *.bak
 *-cache.lib
 *-rescue.lib
@@ -12,6 +13,8 @@ _autosave*
 *.hex
 *.pyc
 *.gch
+\#*
+*.FCBak
 
 # jekyll
 ideas
@@ -30,9 +33,13 @@ build
 # hardware
 datasheets
 gerbers
+references
 
 # mechanical
 *.FCStd1
 
 # text editor
 !.vscode
+
+#scratch
+scratch
